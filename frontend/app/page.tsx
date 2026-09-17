@@ -1,32 +1,6 @@
 import Link from "next/link";
 
 export default function LandingPage() {
-  return (
-    <div className="flex flex-col items-start gap-6 py-16">
-      <h1 className="text-4xl font-bold tracking-tight max-w-2xl">
-        A financial research agent that shows its work.
-      </h1>
-      <p className="text-muted max-w-xl leading-relaxed">
-        Ask about a company in plain English. The agent pulls live prices,
-        technical indicators, fundamentals, news sentiment, and grounded
-        excerpts from SEC filings — then tells you exactly which tools it
-        used and where each fact came from. Informational research only,
-        never trading advice.
-      </p>
-      <div className="flex gap-4">
-        <Link
-          href="/dashboard"
-          className="bg-accent text-black font-medium px-5 py-2.5 rounded-lg hover:opacity-90 transition"
-        >
-          Open Dashboard
-        </Link>
-        <Link
-          href="/research"
-          className="border border-border px-5 py-2.5 rounded-lg hover:border-accent transition"
-        >
-          Try Research Chat
-        </Link>
-      </div>
-    </div>
-  );
+  const features = [["Live market context", "Prices, charts and technical signals in one considered view."], ["Evidence-first research", "Every answer is paired with its source trail and tool trace."], ["Built for clarity", "No noisy feeds—just the information that moves your thesis."]];
+  return <div className="py-6 sm:py-14"><section className="relative overflow-hidden rounded-3xl border border-white/[0.09] bg-surface/70 px-6 py-14 shadow-panel sm:px-14 sm:py-20"><div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-accent/10 blur-3xl" /><p className="eyebrow mb-6 flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-accent" /> Financial intelligence, without the noise</p><h1 className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-[-.045em] sm:text-6xl">A clearer way to <span className="text-accent">understand</span> the market.</h1><p className="mt-6 max-w-xl text-base leading-7 text-muted sm:text-lg">Aster brings live prices, technical context, company fundamentals and AI-grounded research into one quiet, confident workspace.</p><div className="mt-9 flex flex-wrap gap-3"><Link href="/dashboard" className="rounded-xl bg-accent px-5 py-3 text-sm font-semibold text-[#07120c] transition hover:-translate-y-0.5 hover:brightness-110">Explore the terminal →</Link><Link href="/research" className="rounded-xl border border-white/[0.12] bg-white/[0.04] px-5 py-3 text-sm font-medium transition hover:bg-white/[0.09]">Ask a research question</Link></div><p className="mt-7 text-xs text-muted">For research and education. Not investment advice.</p></section><section className="mt-5 grid gap-4 md:grid-cols-3">{features.map(([title, text], i) => <div key={title} className="panel rounded-2xl p-5"><span className="mb-5 grid h-7 w-7 place-items-center rounded-lg bg-accent/10 text-xs font-bold text-accent">0{i + 1}</span><h2 className="font-medium">{title}</h2><p className="mt-2 text-sm leading-6 text-muted">{text}</p></div>)}</section></div>;
 }

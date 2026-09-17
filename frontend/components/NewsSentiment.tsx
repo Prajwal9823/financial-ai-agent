@@ -8,8 +8,7 @@ const SENTIMENT_COLOR: Record<string, string> = {
 
 export default function NewsSentiment({ data }: { data: SentimentSummary }) {
   return (
-    <div className="bg-surface border border-border rounded-xl p-4">
-      <h3 className="text-sm text-muted mb-3">News sentiment ({data.article_count} articles)</h3>
+    <div className="panel rounded-2xl p-5"><div className="mb-4"><p className="eyebrow">Narrative pulse</p><h3 className="mt-1 font-medium">News sentiment <span className="text-sm font-normal text-muted">· {data.article_count} articles</span></h3></div>
 
       <div className="flex gap-4 mb-4 text-sm">
         <span className="text-accent">Positive {data.positive_pct}%</span>
@@ -24,7 +23,7 @@ export default function NewsSentiment({ data }: { data: SentimentSummary }) {
             href={article.url}
             target="_blank"
             rel="noreferrer"
-            className="block border border-border/60 rounded-lg p-3 hover:border-accent transition"
+            className="block rounded-xl border border-white/[0.07] bg-black/10 p-3 transition hover:border-accent/50 hover:bg-white/[0.035]"
           >
             <div className="text-sm font-medium">{article.title}</div>
             <div className="text-xs text-muted mt-1 flex gap-2">

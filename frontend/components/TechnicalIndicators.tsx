@@ -15,8 +15,7 @@ export default function TechnicalIndicators({ data }: { data: TechData }) {
     data.macd_trend === "Bullish" ? "text-accent" : data.macd_trend === "Bearish" ? "text-danger" : "text-muted";
 
   return (
-    <div className="bg-surface border border-border rounded-xl p-4">
-      <h3 className="text-sm text-muted mb-2">Technical indicators</h3>
+    <div className="panel rounded-2xl p-5"><div className="mb-3"><p className="eyebrow">Signal desk</p><h3 className="mt-1 font-medium">Technical indicators</h3></div>
       <Metric label="RSI (14)" value={data.rsi_14} />
       <Metric label="MACD trend" value={data.macd_trend ? <span className={trendColor}>{data.macd_trend}</span> : undefined} />
       <Metric label="50D SMA" value={data.sma_50} />

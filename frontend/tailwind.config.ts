@@ -8,13 +8,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#0b0f14",
-        surface: "#121821",
-        border: "#1f2733",
-        accent: "#3dd68c",   // gains / positive
-        danger: "#f2545b",   // losses / negative
-        muted: "#8592a3",
+        background: "#080b10", surface: "#10161e", border: "#27313e",
+        accent: "#49e59c", danger: "#ff6f7d", muted: "#91a0b1",
       },
+      boxShadow: { panel: "0 20px 60px rgba(0,0,0,.24)" },
     },
   },
   plugins: [],

@@ -2,10 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: #0b0f14;
-  color: #e6ebf2;
-}
+body { min-height: 100vh; color: #eef6f1; background: radial-gradient(circle at 12% -8%, rgba(54,211,145,.16), transparent 31rem), radial-gradient(circle at 91% 14%, rgba(73,117,245,.12), transparent 29rem), #080b10; }
+* { box-sizing: border-box; }
+::selection { background: rgba(61,214,140,.3); }
 
 /* Thin scrollbars fit the dense-dashboard aesthetic better than the browser default */
 ::-webkit-scrollbar {
@@ -13,6 +12,12 @@ body {
   height: 8px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1f2733;
-  border-radius: 4px;
+  background: #29323e;
+  border-radius: 20px;
+}
+
+@layer components {
+  .panel { @apply border border-white/[0.08] bg-surface/80 backdrop-blur-xl shadow-panel; }
+  .eyebrow { @apply text-[10px] font-semibold uppercase tracking-[0.18em] text-muted; }
+  .soft-grid { background-image: linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px); background-size: 30px 30px; }
 }

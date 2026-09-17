@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { api, ResearchResponse } from "@/lib/api";
+import ResearchAnswer from "@/components/ResearchAnswer";
 
 interface Turn {
   query: string;
@@ -37,18 +38,19 @@ export default function ChatInterface() {
 
   return (
     <div className="flex flex-col gap-6">
+      {turns.length === 0 && <div className="panel rounded-2xl p-6 sm:p-8"><p className="eyebrow">Try a starting point</p><div className="mt-4 grid gap-3 sm:grid-cols-2">{["Why did NVDA move recently?", "Compare Apple and Microsoft", "What is Tesla's current sentiment?", "Explain AAPL's technical setup"].map((prompt) => <button key={prompt} onClick={() => setInput(prompt)} className="rounded-xl border border-white/[0.08] bg-black/10 p-4 text-left text-sm text-muted transition hover:border-accent/40 hover:bg-accent/[.04] hover:text-white">{prompt}<span className="ml-2 text-accent">→</span></button>)}</div></div>}
       <div className="flex flex-col gap-6">
         {turns.map((turn, i) => (
           <div key={i} className="flex flex-col gap-2">
-            <div className="self-end bg-accent text-black rounded-lg px-4 py-2 max-w-lg">{turn.query}</div>
+            <div className="self-end max-w-lg rounded-2xl rounded-br-sm bg-accent px-4 py-2.5 text-sm font-medium text-[#07120c]">{turn.query}</div>
 
             {turn.response && (
-              <div className="bg-surface border border-border rounded-lg p-4 max-w-2xl flex flex-col gap-3">
+              <div className="panel max-w-2xl rounded-2xl rounded-tl-sm p-5 flex flex-col gap-4">
                 <div className="flex flex-wrap gap-2 text-xs">
                   {turn.response.tools_used.map((t, j) => (
                     <span
                       key={j}
-                      className={`px-2 py-1 rounded border border-border/60 ${
+                      className={`rounded-full border border-white/[0.09] bg-black/10 px-2.5 py-1 ${
                         t.status === "success" ? "text-accent" : "text-danger"
                       }`}
                     >
@@ -57,11 +59,10 @@ export default function ChatInterface() {
                   ))}
                 </div>
 
-                <p className="text-sm whitespace-pre-wrap leading-relaxed">{turn.response.answer}</p>
+                <ResearchAnswer answer={turn.response.answer} />
 
                 {turn.response.sources.length > 0 && (
-                  <div className="text-xs text-muted">
-                    <p className="mb-1">Sources:</p>
+                  <div className="border-t border-white/[0.07] pt-3 text-xs text-muted"><p className="mb-1.5 font-medium text-white/70">Sources</p>
                     <ul className="list-disc list-inside space-y-0.5">
                       {turn.response.sources.slice(0, 6).map((src) => (
                         <li key={src}>
@@ -76,23 +77,23 @@ export default function ChatInterface() {
               </div>
             )}
 
-            {turn.error && <div className="text-danger text-sm max-w-2xl">{turn.error}</div>}
+            {turn.error && <div className="max-w-2xl rounded-xl border border-danger/30 bg-danger/10 p-3 text-sm text-danger">{turn.error}</div>}
           </div>
         ))}
-        {loading && <p className="text-muted text-sm">Researching…</p>}
+        {loading && <p className="text-sm text-muted"><span className="mr-2 inline-block h-2 w-2 animate-pulse rounded-full bg-accent" />Gathering evidence…</p>}
       </div>
 
-      <form onSubmit={handleSubmit} className="flex gap-2 sticky bottom-4">
+      <form onSubmit={handleSubmit} className="panel sticky bottom-4 flex gap-2 rounded-2xl p-2 shadow-[0_16px_45px_rgba(0,0,0,.4)]">
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder='Try: "Why did NVDA move recently?"'
-          className="bg-surface border border-border rounded-lg px-4 py-3 flex-1 outline-none focus:border-accent transition"
+          className="min-w-0 flex-1 bg-transparent px-3 py-3 text-sm outline-none placeholder:text-muted"
         />
         <button
           type="submit"
           disabled={loading}
-          className="bg-accent text-black font-medium px-5 py-3 rounded-lg hover:opacity-90 transition disabled:opacity-50"
+          className="rounded-xl bg-accent px-5 py-3 text-sm font-semibold text-[#07120c] transition hover:brightness-110 disabled:opacity-50"
         >
           Ask
         </button>

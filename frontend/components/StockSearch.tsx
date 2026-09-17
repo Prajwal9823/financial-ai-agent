@@ -19,24 +19,22 @@ export default function StockSearch({ defaultValue = "", onSearch }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-1">
-      <div className="flex gap-2">
+    <form onSubmit={handleSubmit} className="panel rounded-2xl p-3 sm:p-4">
+      <div className="flex flex-col gap-2 sm:flex-row">
         <input
           value={value}
           onChange={(e) => setValue(e.target.value)}
           placeholder="Enter a ticker symbol, e.g. AAPL"
-          className="bg-surface border border-border rounded-lg px-4 py-2 flex-1 outline-none focus:border-accent transition"
+          className="min-w-0 flex-1 rounded-xl border border-white/[0.09] bg-black/20 px-4 py-3 text-sm outline-none placeholder:text-muted/70 focus:border-accent/70 focus:ring-4 focus:ring-accent/10 transition"
         />
         <button
           type="submit"
-          className="bg-accent text-black font-medium px-5 py-2 rounded-lg hover:opacity-90 transition"
+          className="rounded-xl bg-accent px-6 py-3 text-sm font-semibold text-[#07120c] transition hover:brightness-110 active:scale-[.98]"
         >
           Analyze
         </button>
       </div>
-      <span className="text-xs text-muted">
-        Use the stock&apos;s ticker symbol (e.g. AAPL for Apple, NVDA for Nvidia) — not the company name.
-      </span>
+      <span className="mt-2 block text-xs text-muted">Enter a ticker symbol, such as AAPL, NVDA or MSFT.</span>
     </form>
   );
 }

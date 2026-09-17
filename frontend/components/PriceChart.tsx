@@ -8,10 +8,8 @@ export default function PriceChart({ history }: { history: HistoricalPrices }) {
   const data = history.points.map((p) => ({ date: p.date, close: p.close }));
 
   return (
-    <div className="bg-surface border border-border rounded-xl p-4">
-      <h3 className="text-sm text-muted mb-3">
-        Price history ({history.period}) — {history.ticker}
-      </h3>
+    <div className="panel rounded-2xl p-5">
+      <div className="mb-4 flex items-start justify-between"><div><p className="eyebrow">Price action</p><h3 className="mt-1 font-medium">{history.ticker} history</h3></div><span className="rounded-full bg-white/[.06] px-2.5 py-1 text-xs text-muted">{history.period}</span></div>
       <ResponsiveContainer width="100%" height={260}>
         <LineChart data={data}>
           <XAxis dataKey="date" tick={{ fontSize: 10, fill: "#8592a3" }} minTickGap={40} />
