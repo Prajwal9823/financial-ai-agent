@@ -13,7 +13,7 @@ pandas==2.2.2
 numpy==1.26.4
 scikit-learn==1.5.1
 vaderSentiment==3.3.2
-
+feedparser==6.0.11
 # --- LLM ---
 anthropic==0.34.2
 google-genai
