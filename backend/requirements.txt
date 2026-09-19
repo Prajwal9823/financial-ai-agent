@@ -16,6 +16,7 @@ vaderSentiment==3.3.2
 
 # --- LLM ---
 anthropic==0.34.2
+google-genai==1.39.0
 
 # --- Testing ---
 pytest==8.3.2
